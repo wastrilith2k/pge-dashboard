@@ -1,9 +1,9 @@
-import Header from './components/Header';
-import CarbonGauge from './components/CarbonGauge';
-import GenerationMix from './components/GenerationMix';
-import DemandChart from './components/DemandChart';
-import InterchangePanel from './components/InterchangePanel';
-import StatCard from './components/StatCard';
+import { Header } from './components/Header/Header';
+import { CarbonGauge } from './components/CarbonGauge/CarbonGauge';
+import { GenerationMix } from './components/GenerationMix/GenerationMix';
+import { DemandChart } from './components/DemandChart/DemandChart';
+import { InterchangePanel } from './components/InterchangePanel/InterchangePanel';
+import { StatCard } from './components/StatCard/StatCard';
 import { useGridData } from './data/useGridData';
 import styles from './App.module.css';
 
