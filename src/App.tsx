@@ -8,12 +8,14 @@ import { useGridData } from './data/useGridData';
 import styles from './App.module.css';
 
 export const App = () => {
-  const { data, lastUpdated, isLive, isDemo } = useGridData();
+  const { data, lastUpdated, isLive, isDemo, error } = useGridData();
 
   if (!data) {
     return (
       <div className={styles.loading}>
-        <div className={styles.loadingText}>Initializing grid telemetry...</div>
+        <div className={styles.loadingText}>
+          {error ? `Connection error: ${error}` : 'Initializing grid telemetry...'}
+        </div>
       </div>
     );
   }
