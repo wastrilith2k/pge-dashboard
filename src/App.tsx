@@ -7,7 +7,7 @@ import { StatCard } from './components/StatCard/StatCard';
 import { useGridData } from './data/useGridData';
 import styles from './App.module.css';
 
-export default function App () {
+export const App = () => {
   const { data, lastUpdated, isLive, isDemo } = useGridData();
 
   if (!data) {

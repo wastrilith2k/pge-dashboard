@@ -17,6 +17,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { CarbonPoint } from '../../data/simulation';
 import { AreaChart, Area, ResponsiveContainer, YAxis } from 'recharts';
+import { ArcGauge } from '../SVGs/ArcGauge';
 import styles from './CarbonGauge.module.css';
 
 /**
@@ -126,64 +127,6 @@ export const CarbonGauge = ({ current, history }: CarbonGaugeProps) => {
   const color = getColor(displayValue);
   const label = getLabel(displayValue);
 
-  // ─────────────────────────────────────────────────────────────────
-  // SVG Arc Gauge Configuration
-  // ─────────────────────────────────────────────────────────────────
-
-  /** Radius of the arc in SVG units */
-  const radius = 80;
-
-  /** Stroke width of the arc */
-  const strokeWidth = 10;
-
-  /** Center X coordinate */
-  const cx = 100;
-
-  /** Center Y coordinate */
-  const cy = 95;
-
-  /** Starting angle in degrees (bottom-left) */
-  const startAngle = -210;
-
-  /** Ending angle in degrees (bottom-right) */
-  const endAngle = 30;
-
-  /** Total angle span of the arc */
-  const totalAngle = endAngle - startAngle;
-
-  /** Current value angle based on displayValue (0-100 mapped to arc) */
-  const valueAngle = startAngle + (displayValue / 100) * totalAngle;
-
-  /**
-   * Converts polar coordinates (angle) to cartesian (x, y).
-   * Used to calculate arc endpoints.
-   *
-   * @param {number} angle - Angle in degrees
-   * @returns {{ x: number, y: number }} Cartesian coordinates
-   */
-  const polarToCartesian = (angle: number) => {
-    const rad = (angle * Math.PI) / 180;
-    return {
-      x: cx + radius * Math.cos(rad),
-      y: cy + radius * Math.sin(rad)
-    };
-  };
-
-  /**
-   * Creates an SVG arc path string.
-   *
-   * @param {number} start - Start angle in degrees
-   * @param {number} end - End angle in degrees
-   * @returns {string} SVG path d attribute value
-   */
-  const describeArc = (start: number, end: number) => {
-    const s = polarToCartesian(start);
-    const e = polarToCartesian(end);
-    // Use large arc flag when span > 180 degrees
-    const largeArc = end - start > 180 ? 1 : 0;
-    return `M ${s.x} ${s.y} A ${radius} ${radius} 0 ${largeArc} 1 ${e.x} ${e.y}`;
-  };
-
   /**
    * Sparkline data: last 36 points representing ~3 hours of data.
    * Transformed to format expected by Recharts.
@@ -199,76 +142,13 @@ export const CarbonGauge = ({ current, history }: CarbonGaugeProps) => {
       </div>
 
       <div className={styles.content}>
-        {/* Arc Gauge SVG */}
-        <svg viewBox="0 0 200 130" className={styles.gauge}>
-          {/* Background arc (full range, dim color) */}
-          <path
-            d={describeArc(startAngle, endAngle)}
-            fill="none"
-            stroke="rgba(148,163,184,0.1)"
-            strokeWidth={strokeWidth}
-            strokeLinecap="round"
-          />
-
-          {/* Value arc (0 to current value, colored) */}
-          <path
-            d={describeArc(startAngle, valueAngle)}
-            fill="none"
-            stroke={color}
-            strokeWidth={strokeWidth}
-            strokeLinecap="round"
-            style={{
-              filter: `drop-shadow(0 0 6px ${color}40)`,
-              transition: 'stroke 0.5s'
-            }}
-          />
-
-          {/* Central value display */}
-          <text
-            x={cx}
-            y={cy - 8}
-            textAnchor="middle"
-            fill={color}
-            fontSize="36"
-            fontFamily="var(--font-mono)"
-            fontWeight="600"
-            style={{ transition: 'fill 0.5s' }}
-          >
-            {displayValue}
-          </text>
-
-          {/* Status label below value */}
-          <text
-            x={cx}
-            y={cy + 14}
-            textAnchor="middle"
-            fill="rgba(148,163,184,0.6)"
-            fontSize="11"
-            fontFamily="var(--font-sans)"
-          >
-            {label}
-          </text>
-
-          {/* Scale labels at arc endpoints */}
-          <text
-            x="18"
-            y="120"
-            fill="rgba(148,163,184,0.4)"
-            fontSize="9"
-            fontFamily="var(--font-mono)"
-          >
-            0
-          </text>
-          <text
-            x="175"
-            y="120"
-            fill="rgba(148,163,184,0.4)"
-            fontSize="9"
-            fontFamily="var(--font-mono)"
-          >
-            100
-          </text>
-        </svg>
+        {/* Arc Gauge component */}
+        <ArcGauge
+          value={displayValue}
+          color={color}
+          label={label}
+          className={styles.gauge}
+        />
 
         {/* Sparkline showing 3-hour trend */}
         <div className={styles.sparkline}>

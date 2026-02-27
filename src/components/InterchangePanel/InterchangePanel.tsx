@@ -16,6 +16,7 @@
  */
 import { InterchangePoint } from '../../data/simulation';
 import { AreaChart, Area, ResponsiveContainer, YAxis } from 'recharts';
+import { DirectionArrowIcon } from '../SVGs/DirectionArrowIcon';
 import styles from './InterchangePanel.module.css';
 
 /**
@@ -95,25 +96,8 @@ export const InterchangePanel = ({ data, current }: InterchangePanelProps) => {
               {isExporting ? 'NET EXPORT' : 'NET IMPORT'}
             </span>
 
-            {/* Direction arrow SVG */}
-            <svg
-              width="16"
-              height="12"
-              viewBox="0 0 16 12"
-              style={{ marginLeft: '0.25rem' }}
-            >
-              {/* Arrow points right for export, left for import */}
-              <path
-                d={isExporting
-                  ? "M2 6 L14 6 M10 2 L14 6 L10 10"  // Right arrow
-                  : "M14 6 L2 6 M6 2 L2 6 L6 10"     // Left arrow
-                }
-                stroke={isExporting ? '#10b981' : '#ef4444'}
-                strokeWidth="1.5"
-                fill="none"
-                strokeLinecap="round"
-              />
-            </svg>
+            {/* Direction arrow icon */}
+            <DirectionArrowIcon isExporting={isExporting} />
           </div>
         </div>
 

@@ -4,6 +4,7 @@
  * Displays the application branding, current time, and status indicators
  * including demo mode badge and live data indicator.
  */
+import { LightningBoltIcon } from '../SVGs/LightningBoltIcon';
 import styles from './Header.module.css';
 
 /**
@@ -53,17 +54,7 @@ export const Header = ({ lastUpdated, isDemo, isLive }: HeaderProps) => {
       <div className={styles.brand}>
         {/* Lightning bolt icon representing power/energy */}
         <div className={styles.logo}>
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#3b82f6"
-            strokeWidth="2"
-            strokeLinecap="round"
-          >
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-          </svg>
+          <LightningBoltIcon />
         </div>
         <div>
           <h1 className={styles.title}>PNW Grid Monitor</h1>
