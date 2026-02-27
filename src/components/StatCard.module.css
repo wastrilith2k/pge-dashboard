@@ -1,0 +1,37 @@
+.card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+.label {
+  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.valueRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.375rem;
+}
+
+.value {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.unit {
+  color: var(--color-text-dim);
+  font-size: 0.875rem;
+}
+
+.subtext {
+  color: var(--color-text-dim);
+  font-size: 10px;
+  margin-top: 0.25rem;
+  font-family: var(--font-mono);
+}

@@ -1,0 +1,116 @@
+.card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.title {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.region {
+  font-size: 0.75rem;
+  color: var(--color-text-dim);
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.valueRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.value {
+  font-family: var(--font-mono);
+  font-size: 1.875rem;
+  font-weight: 600;
+}
+
+.unit {
+  color: var(--color-text-dim);
+  font-size: 0.875rem;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: 0.25rem;
+}
+
+.badgeLabel {
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 9999px;
+}
+
+.badgeExport {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--color-success);
+}
+
+.badgeImport {
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--color-danger);
+}
+
+.sparkline {
+  flex: 1;
+  height: 3.5rem;
+  margin-left: 1rem;
+}
+
+.flows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.flowRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+}
+
+.flowRegion {
+  font-family: var(--font-mono);
+  color: var(--color-text-dim);
+  width: 3rem;
+}
+
+.flowBar {
+  flex: 1;
+  height: 6px;
+  background: var(--color-bg-primary);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.flowProgress {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.7s;
+}
+
+.flowValue {
+  font-family: var(--font-mono);
+  width: 4rem;
+  text-align: right;
+}
